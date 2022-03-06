@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../../../js/vue.js"></script>
+</head>
+<body>
+    <div id = "demo">
+        <school></school>
+
+        <hr>
+        <student></student>
+    </div>
+
+</body>
+<script type="text/javascript">
+
+    var school = Vue.extend({
+        template: `
+          <div class = "demo">
+          <h2>学校名称{{name}}</h2>
+          <h2>学校地址{{address}}</h2>
+          <button @click="showSchoolName()">点我展示学校名称</button>
+          </div>
+        `,
+        data(){
+            return {
+                name: "青麦",
+                address: "汶水路"
+            }
+        },
+        methods:{
+            showSchoolName(){
+                alert(this.name)
+            }
+        }
+    })
+
+    var student = Vue.extend({
+        template: `
+          <div class = "demo">
+          <h2>学生姓名{{name}}</h2>
+          <h2>学生年龄{{age}}</h2>
+          </div>
+        `,
+
+        data(){
+            return {
+                name: "天由",
+                age: 18
+            }
+        }
+    })
+
+   new Vue({
+       el:'#demo',
+       components:{
+           school:school,
+           student:student
+       }
+   })
+</script>
+</html>
