@@ -3,8 +3,8 @@
     <div class="todo-container">
       <div class="todo-wrap">
         <MyHeader :addTodo="addTodo"/>
-        <MyList :todoList="todoList" :changeStatus="changeStatus"/>
-        <MyFooter/>
+        <MyList :todoList="todoList" :changeStatus="changeStatus" :deleteTodo="deleteTodo"/>
+        <MyFooter :todoList="todoList" :checkAllTodo="checkAllTodo" :clearAllDoneTodo="clearAllDoneTodo"/>
       </div>
     </div>
   </div>
@@ -24,27 +24,46 @@ export default {
     MyList,
     MyFooter
   },
-  data(){
+  data() {
     return {
       todoList:
-            [
-                {id:"001",title:"学习Vue",is_done:true},
-                {id:"002",title:"学习python",is_done:false},
-                {id:"003",title:"学习AI",is_done:false}
-            ]
-          }
+          [
+            {id: "001", title: "学习Vue", is_done: true},
+            {id: "002", title: "学习python", is_done: false},
+            {id: "003", title: "学习AI", is_done: false}
+          ]
+    }
   },
-  methods:{
-    addTodo(todoObj){
+  methods: {
+    addTodo(todoObj) {
       console.log(todoObj)
       this.todoList.unshift(todoObj)
       console.log(this.todoList)
     },
-    changeStatus(id){
-      this.todoList.forEach((todo)=>{
-        if(todo.id === id){
+    changeStatus(id) {
+      this.todoList.forEach((todo) => {
+        if (todo.id === id) {
           todo.is_done = !todo.is_done
         }
+      })
+    },
+    deleteTodo(id) {
+      if (confirm("确定要删除吗")) {
+        this.todoList = this.todoList.filter((todo) => {
+              return todo.id !== id;
+            }
+        )
+      }
+    },
+    checkAllTodo(done) {
+      this.todoList.forEach((todo) => {
+        todo.is_done = done
+      })
+    },
+    clearAllDoneTodo() {
+      console.log("clearAllDoneTodo")
+      this.todoList = this.todoList.filter((todo) => {
+        return !todo.is_done
       })
     }
   }
@@ -89,6 +108,7 @@ body {
   width: 600px;
   margin: 0 auto;
 }
+
 .todo-container .todo-wrap {
   padding: 10px;
   border: 1px solid #ddd;

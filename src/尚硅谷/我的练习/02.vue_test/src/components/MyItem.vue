@@ -4,14 +4,19 @@
       <input type="checkbox" :checked="todo.is_done" @change="changeStatus(todo.id)"/>
       <span>{{todo.title}}</span>
     </label>
-    <button class="btn btn-danger" style="display:none">删除</button>
+    <button class="btn btn-danger" style="display:none" @click="doDelete(todo.id)">删除</button>
   </li>
 </template>
 
 <script>
 export default {
   name: "MyItem",
-  props:["todo","changeStatus"]
+  props:["todo","changeStatus","deleteTodo"],
+  methods: {
+    doDelete(id){
+      this.deleteTodo(id)
+    }
+  }
 }
 </script>
 
@@ -51,4 +56,11 @@ li:last-child {
   border-bottom: none;
 }
 
+li:hover{
+  background-color: #ddd;
+}
+
+li:hover button{
+  display: block;
+}
 </style>
