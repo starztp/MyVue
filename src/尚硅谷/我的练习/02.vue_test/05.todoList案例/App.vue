@@ -26,7 +26,12 @@ export default {
   },
   data() {
     return {
-      todoList: JSON.parse(localStorage.getItem("todoList")) || []
+      todoList:
+          [
+            {id: "001", title: "学习Vue", is_done: true},
+            {id: "002", title: "学习python", is_done: false},
+            {id: "003", title: "学习AI", is_done: false}
+          ]
     }
   },
   methods: {
@@ -60,14 +65,6 @@ export default {
       this.todoList = this.todoList.filter((todo) => {
         return !todo.is_done
       })
-    }
-  },
-  watch:{
-    todoList:{
-      deep:true,
-      handler(value){
-        localStorage.setItem("todoList",JSON.stringify(value))
-      }
     }
   }
 }
