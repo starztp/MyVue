@@ -37,6 +37,7 @@
 			}, */
 
 			//借助mapState生成计算属性，从state中读取数据。（对象写法）
+      //...mapState表示将mapState中每组key:value都展开放入computed中
 			// ...mapState({he:'sum',xuexiao:'school',xueke:'subject'}),
 
 			//借助mapState生成计算属性，从state中读取数据。（数组写法）

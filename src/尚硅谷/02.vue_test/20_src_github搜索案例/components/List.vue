@@ -31,6 +31,7 @@
 		},
 		mounted() {
 			this.$bus.$on('updateListData',(dataObj)=>{
+        //合并2个对象的属性，当有重名属性时，以dataObj的属性值为准
 				this.info = {...this.info,...dataObj}
 			})
 		},
